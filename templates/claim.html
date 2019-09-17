@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}claim subsystem{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <style>
+        figure {
+            margin: 16px 40px !important;
+        }
+        .img-fluid {
+            max-width: 10%;
+            height: auto;
+        }
+        .bs-example div[class^="col"] {
+            text-align: center;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+    </style>
+
+
+    <form action="/claimsubsystem" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {% for i in products %}
+
+            {% if loop.index0 % 2==0 %}
+                <div class="bs-example cell1">
+            {% else %}
+                <div class="bs-example cell2">
+            {% endif %}
+
+        <div class="row">
+            <div class="col-sm-2"><input type=checkbox id="{{ i.subsystemID }}"
+                                         name=Products value="{{ i.subsystemID }}"></div>
+            <div class="col-sm-5"><label for="id_{{ i.title }}">{{ i.title }}</label></div>
+        </div>
+        </div>
+
+
+        {% endfor %}
+        <p>{{ form.submit() }}</p>
+    </form>
+
+{% endblock %}

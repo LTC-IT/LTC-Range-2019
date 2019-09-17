@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Dynamic HTML title -->
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap CSS & JS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"><a class="navbar-brand" href="/"><img src="/static/logo2.png" width="103" height="103"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_anonymous %}
+
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/register">Registration</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="/user">User Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="/claimsubsystem">Claim a Subsystem</a></li>
+
+
+
+  {% if user.is_admin() %}
+      <li class="nav-item"><a class="nav-link" href="/registersubsystem">Register New Subsystem</a></li>
+    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Admin Reports </a>
+      <div class="dropdown-menu" aria-labelledby="Preview"> <a class="dropdown-item" href="/report/listallusers">List All Users</a> <a class="dropdown-item" href="/report/stocklels">All User Details</a> <a class="dropdown-item" href="/report/userranks">User Ranks</a> </div>
+    </li>
+  {% endif %}
+  {% endif %}
+        </ul>
+    </div>
+</nav>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+        <li><span style="color: red;">{{ message }}</span></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<body>
+
+    <!-- Dynamic content -->
+    <section class="content">
+        <header>
+            {% block header %}{% endblock %}
+        </header>
+        {% block content %}{% endblock %}
+    </section>
+
+
+</body>
+</html>

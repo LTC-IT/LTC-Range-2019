@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+<!-- This creates the heading of the page and makes it the same as the title -->
+{% block header %}
+    <h1>{% block title %} {{ pagetitle }}   {% endblock %}</h1>
+{% endblock %}
+
+
+<!-- This replaces the content block in base.html -->
+{% block content %}
+<h1>Claim a Subsystem</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.subsystemID.label }}<br>
+            {{ form.subsystemID(size=32) }}<br>
+            {% for error in form.subsystemID.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+{% endblock %}
