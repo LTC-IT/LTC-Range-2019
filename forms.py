@@ -44,3 +44,8 @@ class EditUserForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Update User Details')
+
+
+class ResetPasswordForm(FlaskForm):
+    new_password = StringField('New Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')

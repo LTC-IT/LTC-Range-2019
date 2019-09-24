@@ -17,7 +17,7 @@ login.login_view = 'login'
 
 from flask_login import current_user, login_user
 from models import User, CTFSubSystems
-from forms import LoginForm, RegistrationForm, CTFSubsystemForm, ClaimSubsystemForm, EditUserForm
+from forms import LoginForm, RegistrationForm, CTFSubsystemForm, ClaimSubsystemForm, EditUserForm, ResetPasswordForm
 
 
 @app.route('/')
@@ -197,3 +197,20 @@ def ranked_users():
     print(html_output)
 
     return render_template("reportresult.html", Title="Users Ranked", data=html_output, user=current_user)
+
+
+@app.route('/reset_password/<userid>', methods=['GET', 'POST'])
+@login_required
+def reset_user_password(userid):
+    form = ResetPasswordForm()
+    user = User.query.filter_by(id=userid).first()
+    if form.validate_on_submit():
+        print("Resetting Password:{}".format(form.new_password.data))
+
+        user.set_password(form.new_password.data)
+        db.session.commit()
+        print("done")
+        flash('Password has been reset for user {}'.format(user.username))
+        return redirect(url_for('main_page'))
+
+    return render_template('reset-password.html', title='Reset Password', form=form, user=user)
