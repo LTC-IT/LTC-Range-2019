@@ -4,15 +4,16 @@
 <!-- This creates the heading of the page and makes it the same as the title -->
 {% block header %}
     <h1>{% block title %} {{ pagetitle }}   {% endblock %}</h1>
-    <h1> User Details</h1>
 {% endblock %}
 
 
 <!-- This replaces the content block in base.html -->
 {% block content %}
     <p>Name: {{ user.name }}</p>
-    <p> Username: {{ user.username }}</p>
-    <p> Password: {{ user.Password }}</p>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Current Score: {{ user.current_score }}</p>
+    <p>Administrator Permissions: {{ user.admin }}</p>
     <br>
     <a href=\edit_user\{{user.id}}>Edit User Details</a>
 {% endblock %}
