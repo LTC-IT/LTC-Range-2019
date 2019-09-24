@@ -196,4 +196,4 @@ def ranked_users():
     html_output = Markup("{}</tbody><table>".format(html_output))
     print(html_output)
 
-    return render_template("reportresult.html", pagetitle="Users Ranked", data=html_output, user=current_user)
+    return render_template("reportresult.html", Title="Users Ranked", data=html_output, user=current_user)
