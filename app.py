@@ -19,11 +19,13 @@ from flask_login import current_user, login_user
 from models import User, CTFSubSystems
 from forms import LoginForm, RegistrationForm, CTFSubsystemForm, ClaimSubsystemForm, EditUserForm
 
+
 @app.route('/')
 def main_page():
     user = {'username': '', 'password': '********'}
     title = "Home"
     return render_template('index.html', pagetitle=title, user=current_user)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -45,7 +47,7 @@ def logout():
     return redirect(url_for('main_page'))
 
 
-@app.route('/user',)
+@app.route('/user', )
 @login_required
 def user_details():
     return render_template("user.html", title="User Details", user=current_user)
@@ -58,7 +60,8 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         print("test")
-        user = User(name=form.name.data, username=form.username.data, email=form.email.data, current_score=0, is_administrator=False)
+        user = User(name=form.name.data, username=form.username.data, email=form.email.data, current_score=0,
+                    is_administrator=False)
         print(user)
         user.set_password(form.password.data)
         db.session.add(user)
@@ -69,19 +72,18 @@ def register():
     return render_template('register.html', title='Register', form=form, user=current_user)
 
 
-
 @app.route('/registersubsystem', methods=['GET', 'POST'])
 @login_required
 def registerCTFSubsystem():
     form = CTFSubsystemForm()
     if form.validate_on_submit():
-        newSubSystem = CTFSubSystems(title=form.title.data, description=form.description.data, score=form.score.data, Owner="None")
+        newSubSystem = CTFSubSystems(title=form.title.data, description=form.description.data, score=form.score.data,
+                                     Owner="None")
         db.session.add(newSubSystem)
         db.session.commit()
         flash('Congratulations, you have registered a new CTF Subsystem!')
         return redirect(url_for('login'))
     return render_template('registersubsystem.html', title='Register Sub System', form=form, user=current_user)
-
 
 
 @app.route('/claimsubsystem', methods=['GET', 'POST'])
@@ -110,6 +112,7 @@ def claimsubsystem():
     result = db.engine.execute(subsystems)
 
     return render_template('claim.html', Title='Claim a Subsystem', products=result, user=current_user, form=form)
+
 
 @app.route('/edit_user/<userid>', methods=['GET', 'POST'])
 @login_required
@@ -158,6 +161,39 @@ def display_users():
     return render_template('reportresult.html', Title='List of Users', data=html_output, user=current_user)
 
 
-
 if __name__ == '__main__':
     app.run()
+
+
+@app.route('/report/u_ranked')
+@login_required
+def ranked_users():
+    ranked = text('select id, username, current_score from user')
+    result = db.engine.execute(ranked)
+    users = []
+    html_output = Markup(
+        "<div class=\"container-fluid table table-hover text-centered\"><div class = \"row\"><div class=\"col-sm-4 "
+        "font-weight-bold\">ID</div><div class=\"col-sm-4 font-weight-bold\">Username</div><div class=\"col-sm-4 "
+        "font-weight-bold\">Current Score</div></div> "
+    )
+
+    for row in result:
+        users.append(row)
+    print(users)
+    # user_counter = 1
+    for index, user in enumerate(users):
+
+        if index % 2 == 0:
+            html_output = Markup("{}<div class = \"row cell1\"><div class=\"col-sm-4\">{}</div> "
+                                 "<div class=\"col-sm-4\">{}</div><div class=\"col-sm-4\">{}</div>"
+                                 "</div>".format(html_output, user[0], user[1], user[2]))
+        else:
+            html_output = Markup(
+                "{}<div class = \"row cell2\"><div class=\"col-sm-4\">{}</div> <div class=\"col-sm-4\">{}"
+                "</div><div class=\"col-sm-4\">{}</div></div>".format(html_output, user[0], user[1], user[2]))
+        # user_counter = user_counter + 1
+
+    html_output = Markup("{}</tbody><table>".format(html_output))
+    print(html_output)
+
+    return render_template("reportresult.html", pagetitle="Users Ranked", data=html_output, user=current_user)
