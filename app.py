@@ -22,7 +22,6 @@ from forms import LoginForm, RegistrationForm, CTFSubsystemForm, ClaimSubsystemF
 
 @app.route('/')
 def main_page():
-    user = {'username': '', 'password': '********'}
     title = "Home"
     return render_template('index.html', pagetitle=title, user=current_user)
 
@@ -138,20 +137,27 @@ def display_users():
     result = db.engine.execute(sql)
     users = []
     html_output = Markup(
-        "<div class=\"container-fluid table table-hover text-centered\"><div class = \"row\"><div class=\"col-sm-3 font-weight-bold\">ID</div><div class=\"col-sm-3 font-weight-bold\">User Name</div><div class=\"col-sm-3 font-weight-bold\">Reset Password</div><div class=\"col-sm-3 font-weight-bold\">Edit User Details</div></div>")
+        "<div class=\"container-fluid table table-hover text-centered\"><div class = \"row\"><div class=\"col-sm-3 "
+        "font-weight-bold\">ID</div><div class=\"col-sm-3 font-weight-bold\">User Name</div><div class=\"col-sm-3 "
+        "font-weight-bold\">Reset Password</div><div class=\"col-sm-3 font-weight-bold\">Edit User "
+        "Details</div></div>")
     for row in result:
         users.append(row)
     print(users)
     user_counter = 1
     for index, user in enumerate(users):
 
-        if (index % 2 == 0):
+        if index % 2 == 0:
             html_output = Markup(
-                "{}<div class = \"row cell1\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\"><a href=\"/reset_password/{}\">Reset Password</a></div> <div class=\"col-sm-3\"><a href=\"/edit_user/{}\">Edit User Details</a></div></div>".format(
+                "{}<div class = \"row cell1\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div><div "
+                "class=\"col-sm-3\"><a href=\"/reset_password/{}\">Reset Password</a></div> <div "
+                "class=\"col-sm-3\"><a href=\"/edit_user/{}\">Edit User Details</a></div></div>".format(
                     html_output, user_counter, user[0], user[1], user[1]))
         else:
             html_output = Markup(
-                "{}<div class = \"row cell2\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\"><a href=\"/reset_password/{}\">Reset Password</a></div><div class=\"col-sm-3\"><a href=\"/edit_user/{}\">Edit User Details</a></div></div>".format(
+                "{}<div class = \"row cell2\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div><div "
+                "class=\"col-sm-3\"><a href=\"/reset_password/{}\">Reset Password</a></div><div class=\"col-sm-3\"><a "
+                "href=\"/edit_user/{}\">Edit User Details</a></div></div>".format(
                     html_output, user_counter, user[0], user[1], user[1]))
         user_counter = user_counter + 1
 
