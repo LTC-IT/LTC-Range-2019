@@ -111,7 +111,7 @@ def claimsubsystem():
     subsystems = text('select * from ctf_sub_systems')
     result = db.engine.execute(subsystems)
 
-    return render_template('claim.html', Title='Claim a Subsystem', products=result, user=current_user, form=form)
+    return render_template('claim.html', Title='Claim a Subsystem.', products=result, user=current_user, form=form)
 
 
 @app.route('/edit_user/<userid>', methods=['GET', 'POST'])
