@@ -220,3 +220,5 @@ def reset_user_password(userid):
         return redirect(url_for('main_page'))
 
     return render_template('reset-password.html', title='Reset Password', form=form, user=user)
+
+#test#
