@@ -13,7 +13,7 @@
     <p>Username: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
     <p>Current Score: {{ user.current_score }}</p>
-    <p>Administrator Permissions: {{ user.admin }}</p>
+    <p>Administrator Permissions: {{ user.is_administrator }}</p>
     <br>
     <a href=\edit_user\{{user.id}}>Edit User Details</a> <br>
     <a href=\reset_password\{{ user.id }}>Reset Password</a>
