@@ -3,16 +3,18 @@
 
 <!-- This creates the heading of the page and makes it the same as the title -->
 {% block header %}
-    <h1>{% block title %} {{ pagetitle }}   {% endblock %}</h1>
-    <h1> User Details</h1>
+    <h1>{% block title %} {{ title }}   {% endblock %}</h1>
 {% endblock %}
 
 
 <!-- This replaces the content block in base.html -->
 {% block content %}
     <p>Name: {{ user.name }}</p>
-    <p> Username: {{ user.username }}</p>
-    <p> Password: {{ user.Password }}</p>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Current Score: {{ user.current_score }}</p>
+    <p>Administrator Permissions: {{ user.is_administrator }}</p>
     <br>
-    <a href=\edit_user\{{user.id}}>Edit User Details</a>
+    <a href=\edit_user\{{user.id}}>Edit User Details</a> <br>
+    <a href=\reset_password\{{ user.id }}>Reset Password</a>
 {% endblock %}
