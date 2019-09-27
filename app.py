@@ -110,7 +110,7 @@ def claimsubsystem():
     subsystems = text('select * from ctf_sub_systems')
     result = db.engine.execute(subsystems)
 
-    return render_template('claim.html', pagetitle='Claim a Subsystem.', products=result, user=current_user, form=form)
+    return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem.', products=result, user=current_user, form=form)
 
 
 @app.route('/edit_user/<userid>', methods=['GET', 'POST'])
@@ -170,6 +170,42 @@ def display_users():
 if __name__ == '__main__':
     app.run()
 
+@app.route('/report/stocklels')
+def all_user_details():
+    sql = text('select username, id, email, name from user')
+    result = db.engine.execute(sql)
+    users = []
+    html_output = Markup(
+        "<div class=\"container-fluid table table-hover text-centered\"><div class = \"row\"><div class=\"col-sm-3 "
+        "font-weight-bold\">ID</div><div class=\"col-sm-3 font-weight-bold\">User Name</div><div class=\"col-sm-3 "
+        "font-weight-bold\">Reset Password</div><div class=\"col-sm-3 font-weight-bold\">Edit User "
+        "Details</div></div>")
+    for row in result:
+        users.append(row)
+    print(users)
+    user_counter = 1
+    for index, user in enumerate(users):
+
+        if index % 2 == 0:
+            html_output = Markup(
+                "{}<div class = \"row cell1\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
+                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>".format(
+                    html_output, user_counter, user[0], user[1], user[1]))
+        else:
+            html_output = Markup(
+                "{}<div class = \"row cell1\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
+                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>".format(
+                    html_output, user_counter, user[0], user[1], user[1]))
+        user_counter = user_counter + 1
+
+    html_output = Markup("{}</tbody></table>".format(html_output))
+    print(html_output)
+
+    return render_template('user-details.html', Title='List of Users', data=html_output, user=current_user)
+
+
+if __name__ == '__main__':
+    app.run()
 
 @app.route('/report/u_ranked')
 @login_required
