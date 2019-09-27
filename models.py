@@ -64,5 +64,5 @@ class Order(db.Model):
         self.claimdate = claim_date
 
     def __repr__(self):
-        return '<Claim {}: User {} Claimed Substems {}, date: {}>'.format(self.claimID, self.userID, self.subsystemID,
-                                                                          self.orderdate)
+        return '<Claim {}: User {} Claimed Subsystems {}, date: {}>'.format(self.claimID, self.userID, self.subsystemID,
+                                                                            self.orderdate)
