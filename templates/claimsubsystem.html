@@ -22,7 +22,7 @@
         }
     </style>
 
-    <form action="/claimSubsystem" method="post" novalidate>
+    <form action="/claimsubsystem" method="post" novalidate>
         {{ form.hidden_tag() }}
         {{ form.csrf_token }}
         {% for i in subsystems %}
@@ -34,25 +34,13 @@
             {% endif %}
 
         <div class="row">
-            <div class="col-sm-2"><input type=checkbox id="{{ i.ID }}"
-                                         name=Subsystems value="{{ i.id }}"></div>
-            <div class="col-sm-5" style="text-align: left"><label for="id_{{ i.Title }}">{{ i.Title }}</label></div>
+            <div class="col-sm-2"><input type=checkbox id="{{ i.subsystemID }}"
+                                         name=Subsystems value="{{ i.subsystemID }}"></div>
+            <div class="col-sm-5" style="text-align: left"><label for="id_{{ i.subsystemID }}">{{ i.subsystemID }}</label></div>
         </div>
 
         {% endfor %}
         <p style="padding-top: 15px; padding-left: 60px">{{ form.submit() }}</p>
     </form>
 
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-
-        <p>
-            {{ form.subsystemID.label }}<br>
-            {{ form.subsystemID(size=32) }}<br>
-            {% for error in form.subsystemID.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p style="padding-top: 15px; padding-left: 60px">{{ form.submit() }}</p>
-    </form>
 {% endblock %}
