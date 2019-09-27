@@ -110,7 +110,7 @@ def claimsubsystem():
     subsystems = text('select * from ctf_sub_systems')
     result = db.engine.execute(subsystems)
 
-    return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem.', products=result, user=current_user, form=form)
+    return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem', products=result, user=current_user, form=form)
 
 
 @app.route('/edit_user/<userid>', methods=['GET', 'POST'])
@@ -170,7 +170,7 @@ def display_users():
 if __name__ == '__main__':
     app.run()
 
-@app.route('/report/stocklels')
+@app.route('/report/stocklevels')
 def all_user_details():
     sql = text('select username, id, email, name from user')
     result = db.engine.execute(sql)

@@ -2,7 +2,7 @@
 
 <!-- This creates the heading of the page and makes it the same as the title -->
 {% block header %}
-    <h1>{% block title %} {{ pagetitle }}   {% endblock %}</h1>
+    <h1 style="padding-bottom: 15px">{% block title %} {{ pagetitle }}   {% endblock %}</h1>
 {% endblock %}
 
 <!-- This replaces the content block in base.html -->
@@ -34,9 +34,9 @@
             {% endif %}
 
         <div class="row">
-            <div class="col-sm-2"><input type=checkbox id="{{ i.subsystemID }}"
-                                         name=Subsystems value="{{ i.subsystemID }}"></div>
-            <div class="col-sm-5" style="text-align: left"><label for="id_{{ i.subsystemID }}">{{ i.subsystemID }}</label></div>
+            <div class="col-sm-2"><input type=checkbox id="{{ i.subsystemID  }}"
+                                         name=Subsystems value="{{ i.subsystemID  }}"></div>
+            <div class="col-sm-5" style="text-align: left"><label for="id_{{ i.subsystemID  }}">{{ i.subsystemID  }}</label></div>
         </div>
 
         {% endfor %}
