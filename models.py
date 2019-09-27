@@ -4,6 +4,7 @@ from flask_login import UserMixin
 from app import login
 from datetime import datetime
 
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
@@ -36,9 +37,11 @@ class User(UserMixin, db.Model):
             print("{} is a Regular User".format(self.username))
             return False
 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
 
 class CTFSubSystems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -46,6 +49,8 @@ class CTFSubSystems(db.Model):
     description = db.Column(db.String(256), index=True, unique=True)
     Owner = db.Column(db.String(64), index=True, unique=False)
     score = db.Column(db.Integer, index=True, unique=False)
+    Code = db.Column(db.String(11), index=True, unique=True)
+
 
 class Order(db.Model):
     claimID = db.Column(db.Integer, primary_key=True)
@@ -59,6 +64,5 @@ class Order(db.Model):
         self.claimdate = claim_date
 
     def __repr__(self):
-        return '<Claim {}: User {} Claimed Substems {}, date: {}>'.format(self.claimID, self.userID, self.subsystemID, self.orderdate)
-
-
+        return '<Claim {}: User {} Claimed Substems {}, date: {}>'.format(self.claimID, self.userID, self.subsystemID,
+                                                                          self.orderdate)
