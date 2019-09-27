@@ -10,9 +10,15 @@
 
 <!-- This replaces the content block in base.html -->
 {% block content %}
-    <p> Welcome {{ user.name }}</p>
-    <p> Password: {{ user.Password }}</p>
+    {% if current_user.is_anonymous %}
+    {% else %}
+        <p> Logged in as: {{ user.username }}</p>
+    {% endif %}
+    <p>Welcome to the Capture the Flag game's subsystem claiming site.</p>
+    {% if current_user.is_anonymous %}
+        <p>Please register or login to view the rest of the website.</p>
+    {% else %}
+        <p>If you have a passcode to claim a subsystem, go to the <a href="/claimsubsystem">claim a subsystem</a> page.
+        </p>
+    {% endif %}
 {% endblock %}
-
-</body>
-</html>
