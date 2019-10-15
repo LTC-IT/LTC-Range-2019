@@ -261,3 +261,6 @@ def reset_user_password(userid):
 @app.route('/claimtest', methods=['GET', 'POST'])
 def claim():
     form = ClaimForm()
+#    if form.validate_on_submit():
+#        user =
+    return render_template('claimtest.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
