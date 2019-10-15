@@ -17,7 +17,8 @@ login.login_view = 'login'
 
 from flask_login import current_user, login_user
 from models import User, CTFSubSystems
-from forms import LoginForm, RegistrationForm, CTFSubsystemForm, ClaimSubsystemForm, EditUserForm, ResetPasswordForm
+from forms import LoginForm, RegistrationForm, CTFSubsystemForm, ClaimSubsystemForm, EditUserForm, ResetPasswordForm, \
+    ClaimForm
 
 
 @app.route('/')
@@ -256,4 +257,7 @@ def reset_user_password(userid):
 
     return render_template('reset-password.html', title='Reset Password', form=form, user=user)
 
-#test#
+
+@app.route('/claimtest', methods=['GET', 'POST'])
+def claim():
+    form = ClaimForm()
