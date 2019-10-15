@@ -172,14 +172,13 @@ if __name__ == '__main__':
 
 @app.route('/report/stocklevels')
 def all_user_details():
-    sql = text('select username, id, email, name from user')
+    sql = text('select name, username, email, id from user')
     result = db.engine.execute(sql)
     users = []
     html_output = Markup(
         "<div class=\"container-fluid table table-hover text-centered\"><div class = \"row\"><div class=\"col-sm-3 "
-        "font-weight-bold\">ID</div><div class=\"col-sm-3 font-weight-bold\">User Name</div><div class=\"col-sm-3 "
-        "font-weight-bold\">Reset Password</div><div class=\"col-sm-3 font-weight-bold\">Edit User "
-        "Details</div></div>")
+        "font-weight-bold\">ID</div><div class=\"col-sm-3 font-weight-bold\">Name</div><div class=\"col-sm-3 "
+        "font-weight-bold\">Username</div><div class=\"col-sm-3 font-weight-bold\">Email</div></div>")
     for row in result:
         users.append(row)
     print(users)
@@ -189,19 +188,19 @@ def all_user_details():
         if index % 2 == 0:
             html_output = Markup(
                 "{}<div class = \"row cell1\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
-                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>".format(
-                    html_output, user_counter, user[0], user[1], user[1]))
+                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div></div>".format(
+                    html_output, user_counter, user[0], user[1], user[2]))
         else:
             html_output = Markup(
-                "{}<div class = \"row cell1\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
-                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>".format(
-                    html_output, user_counter, user[0], user[1], user[1]))
+                "{}<div class = \"row cell2\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
+                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div></div>".format(
+                    html_output, user_counter, user[0], user[1], user[2]))
         user_counter = user_counter + 1
 
     html_output = Markup("{}</tbody></table>".format(html_output))
     print(html_output)
 
-    return render_template('user-details.html', Title='List of Users', data=html_output, user=current_user)
+    return render_template('user-details.html', Title='Users Details', data=html_output, user=current_user)
 
 
 if __name__ == '__main__':
