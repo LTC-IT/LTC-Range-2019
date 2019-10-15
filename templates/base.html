@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-image: linear-gradient(to right, #272727, grey); padding-left: 150px"><a class="navbar-brand" href="/"><img src="/static/Blackout%20logo.PNG" width="103" height="103"></a>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-image: linear-gradient(to right, #272727, #26607f); padding-left: 150px"><a class="navbar-brand" href="/"><img src="/static/Blackout%20logo.PNG" width="103" height="103"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
             class="navbar-toggler-icon"></span></button>
@@ -46,7 +46,7 @@
         </ul>
     </div>
 </nav>
-<h1 style="border: #272727 3px solid">  </h1>
+<h1 style="border: #224a61 3px solid">  </h1>
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
@@ -58,14 +58,14 @@
 {% endwith %}
 </body>
     <!-- Dynamic content -->
-    <section class="content" style="padding-left: 150px; padding-top: 30px">
+    <section class="content" style="padding-left: 150px; padding-top: 30px; padding-bottom: 40px">
         <header>
             {% block header %}{% endblock %}
         </header>
         {% block content %}{% endblock %}
     </section>
-    <footer style="padding-top: 40px">
-        <h1 style="border: #272727 3px solid">  </h1>
+    <footer style="padding-top: 20px; background-color: #f0f3f5; border-top: 6px solid #224a61;">
+        <h1 style="text-align: center; font-size: 18px;"> © LTC Web Design 2019 </h1>
     </footer>
 </body>
 </html>
