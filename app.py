@@ -166,7 +166,7 @@ def display_users():
     html_output = Markup("{}</tbody></table>".format(html_output))
     print(html_output)
 
-    return render_template('reportresult.html', Title='List of Users', data=html_output, user=current_user)
+    return render_template('list-users.html', Title='List of Users', data=html_output, user=current_user)
 
 
 if __name__ == '__main__':
@@ -238,7 +238,7 @@ def ranked_users():
     html_output = Markup("{}</div></section></tbody><table>".format(html_output))
     print(html_output)
 
-    return render_template("reportresult.html", Title="Users Ranked", data=html_output, user=current_user)
+    return render_template("user-ranks.html", Title="Scoreboard", data=html_output, user=current_user)
 
 
 @app.route('/reset_password/<userid>', methods=['GET', 'POST'])
