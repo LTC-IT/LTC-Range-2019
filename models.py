@@ -51,6 +51,12 @@ class CTFSubSystems(db.Model):
     score = db.Column(db.Integer, index=True, unique=False)
     Code = db.Column(db.String(11), index=True, unique=True)
 
+    def set_passcode(self, code):
+        self.Code = generate_password_hash(code)
+
+    def check_passcode(self, code):
+        return check_password_hash(self.Code, code)
+
 
 class Order(db.Model):
     claimID = db.Column(db.Integer, primary_key=True)

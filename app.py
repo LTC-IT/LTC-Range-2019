@@ -79,6 +79,7 @@ def registerCTFSubsystem():
     if form.validate_on_submit():
         newSubSystem = CTFSubSystems(title=form.title.data, description=form.description.data, score=form.score.data,
                                      Owner="None")
+        newSubSystem.set_passcode(form.code.data)
         db.session.add(newSubSystem)
         db.session.commit()
         flash('Congratulations, you have registered a new CTF Subsystem!')
@@ -261,6 +262,7 @@ def reset_user_password(userid):
 @app.route('/claimtest', methods=['GET', 'POST'])
 def claim():
     form = ClaimForm()
-#    if form.validate_on_submit():
-#        user =
+    if form.validate_on_submit():
+        user.update_details()
+        db.session.commit()
     return render_template('claimtest.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
