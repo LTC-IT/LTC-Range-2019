@@ -79,6 +79,7 @@ def registerCTFSubsystem():
     if form.validate_on_submit():
         newSubSystem = CTFSubSystems(title=form.title.data, description=form.description.data, score=form.score.data,
                                      Owner="None")
+        newSubSystem.set_passcode(form.code.data)
         db.session.add(newSubSystem)
         db.session.commit()
         flash('Congratulations, you have registered a new CTF Subsystem!')

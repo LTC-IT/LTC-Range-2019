@@ -35,6 +35,7 @@ class CTFSubsystemForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     description = StringField("Description", validators=[DataRequired()])
     score = IntegerField("Score", validators=[DataRequired()])
+    code = StringField('Passcode', validators=[DataRequired()])
     submit = SubmitField('Register')
 
 
