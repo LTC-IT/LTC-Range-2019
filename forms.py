@@ -53,3 +53,8 @@ class EditUserForm(FlaskForm):
 class ResetPasswordForm(FlaskForm):
     new_password = StringField('New Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class ClaimForm(FlaskForm):
+    passcode = StringField('Passcode', validators=[DataRequired()])
+    submit = SubmitField('Claim')
