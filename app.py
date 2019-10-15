@@ -236,7 +236,7 @@ def ranked_users():
                 "</div><div class=\"col-sm-4\">{}</div></div>".format(html_output, user[0], user[1], user[2]))
         # user_counter = user_counter + 1
 
-    html_output = Markup("{}</tbody><table>".format(html_output))
+    html_output = Markup("{}</div></section></tbody><table>".format(html_output))
     print(html_output)
 
     return render_template("reportresult.html", Title="Users Ranked", data=html_output, user=current_user)
