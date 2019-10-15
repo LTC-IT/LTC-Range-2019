@@ -211,13 +211,12 @@ if __name__ == '__main__':
 @app.route('/report/u_ranked')
 @login_required
 def ranked_users():
-    ranked = text('select id, username, current_score from user')
+    ranked = text('select username, current_score from user')
     result = db.engine.execute(ranked)
     users = []
     html_output = Markup(
-        "<div class=\"container-fluid table table-hover text-centered font-color\"><div class = \"row\"><div class=\"col-sm-4 "
-        "font-weight-bold\">ID</div><div class=\"col-sm-4 font-weight-bold\">Username</div><div class=\"col-sm-4 "
-        "font-weight-bold\">Current Score</div></div> "
+        "<div class=\"container-fluid table table-hover text-centered font-color\"><div class = \"row\"><div class=\"col-sm-4 font-weight-bold\">Username</div><div class=\"col-sm-4 "
+        "font-weight-bold\">Score</div></div> "
     )
 
     for row in result:
@@ -227,13 +226,13 @@ def ranked_users():
     for index, user in enumerate(users):
 
         if index % 2 == 0:
-            html_output = Markup("{}<div class = \"row cell1 font-color\"><div class=\"col-sm-4\">{}</div> "
+            html_output = Markup("{}<div class = \"row cell1 font-color\"> "
                                  "<div class=\"col-sm-4\">{}</div><div class=\"col-sm-4\">{}</div>"
-                                 "</div>".format(html_output, user[0], user[1], user[2]))
+                                 "</div>".format(html_output, user[0], user[1]))
         else:
             html_output = Markup(
-                "{}<div class = \"row cell2 font-color\"><div class=\"col-sm-4\">{}</div> <div class=\"col-sm-4\">{}"
-                "</div><div class=\"col-sm-4\">{}</div></div>".format(html_output, user[0], user[1], user[2]))
+                "{}<div class = \"row cell2 font-color\"> <div class=\"col-sm-4\">{}"
+                "</div><div class=\"col-sm-4\">{}</div></div>".format(html_output, user[0], user[1]))
         # user_counter = user_counter + 1
 
     html_output = Markup("{}</div></section></tbody><table>".format(html_output))
