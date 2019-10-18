@@ -215,8 +215,11 @@ def ranked_users():
     result = db.engine.execute(ranked)
     users = []
     html_output = Markup(
-        "<div class=\"container-fluid table table-hover text-centered user-size\"><div class = \"row\"><div class=\"col-sm-4 font-weight-bold\">Username</div><div class=\"col-sm-4 "
-        "font-weight-bold\">Score</div></div> "
+        "<div class=\"container-fluid table table-hover text-centered user-size\"><div class = \"row\">"
+        "<div class=\"col-sm-3 \"font-weight-bold\"></div><div "
+        "class=\"col-sm-3 font-weight-bold\">Username</div><div class=\"col-sm-3 "
+        "font-weight-bold\">Score</div><div class=\"col-sm-3 "
+        "font-weight-bold\"></div></div> "
     )
 
     for row in result:
@@ -227,12 +230,12 @@ def ranked_users():
 
         if index % 2 == 0:
             html_output = Markup("{}<div class = \"row cell1 user-size\"> "
-                                 "<div class=\"col-sm-4\">{}</div><div class=\"col-sm-4\">{}</div>"
+                                 "<div class=\"col-sm-3\"></div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\"></div>"
                                  "</div>".format(html_output, user[0], user[1]))
         else:
             html_output = Markup(
-                "{}<div class = \"row cell2 user-size\"> <div class=\"col-sm-4\">{}"
-                "</div><div class=\"col-sm-4\">{}</div></div>".format(html_output, user[0], user[1]))
+                "{}<div class = \"row cell2 user-size\"> <div class=\"col-sm-3\">"
+                "</div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\">{}</div></div><div class=\"col-sm-3\"></div>".format(html_output, user[0], user[1]))
         # user_counter = user_counter + 1
 
     html_output = Markup("{}</div></section></tbody><table>".format(html_output))
