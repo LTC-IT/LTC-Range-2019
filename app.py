@@ -126,7 +126,7 @@ def edit_User(userid):
         db.session.commit()
         print("User Updated : {}".format(user))
         flash("User Reset")
-        return redirect(url_for('main_page'))
+        return redirect(url_for('user_details'))
 
     form.username.data = user.username
     form.email.data = user.email
@@ -257,7 +257,7 @@ def reset_user_password(userid):
         db.session.commit()
         print("done")
         flash('Password has been reset for user {}'.format(user.username))
-        return redirect(url_for('main_page'))
+        return redirect(url_for('user_details'))
 
     return render_template('reset-password.html', title='Reset Password', form=form, user=user)
 
