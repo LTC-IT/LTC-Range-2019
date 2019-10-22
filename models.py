@@ -58,6 +58,7 @@ class CTFSubSystems(db.Model):
         return check_password_hash(self.Code, code)
 
 
+
 class Order(db.Model):
     claimID = db.Column(db.Integer, primary_key=True)
     subsystemID = db.Column(db.Integer, db.ForeignKey('product.productID'))
