@@ -284,6 +284,7 @@ def claim():
                 update_system = CTFSubSystems.query.filter_by(title=system.title).first()
                 print(update_system.title)
                 update_system.claim()
+                update_system.Owner = current_user.username
 
         db.session.commit()
 
