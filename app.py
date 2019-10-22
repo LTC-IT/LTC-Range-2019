@@ -88,7 +88,7 @@ def registerCTFSubsystem():
     return render_template('registersubsystem.html', title='Register Sub System', form=form, user=current_user)
 
 
-@app.route('/claimsubsystem', methods=['GET', 'POST'])
+@app.route('/secret', methods=['GET', 'POST'])
 @login_required
 def claimsubsystem():
     form = ClaimSubsystemForm()
@@ -113,7 +113,7 @@ def claimsubsystem():
     subsystems = text('select * from ctf_sub_systems')
     result = db.engine.execute(subsystems)
 
-    return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem', products=result, user=current_user, form=form)
+    return render_template('secret.html', pagetitle='Claim a Subsystem', products=result, user=current_user, form=form)
 
 
 @app.route('/edit_user/<userid>', methods=['GET', 'POST'])
@@ -262,7 +262,7 @@ def reset_user_password(userid):
     return render_template('reset-password.html', title='Reset Password', form=form, user=user)
 
 
-@app.route('/claimtest', methods=['GET', 'POST'])
+@app.route('/claimsubsystem', methods=['GET', 'POST'])
 def claim():
     form = ClaimForm()
     if form.validate_on_submit():
@@ -290,4 +290,4 @@ def claim():
 
 
 
-    return render_template('claimtest.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
+    return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
