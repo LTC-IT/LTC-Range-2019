@@ -44,7 +44,7 @@ def load_user(id):
 
 
 class CTFSubSystems(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    subsystemid = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True, unique=True)
     description = db.Column(db.String(256), index=True, unique=True)
     Owner = db.Column(db.String(64), index=True, unique=False)
