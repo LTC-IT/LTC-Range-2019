@@ -23,7 +23,7 @@
     <script>
         function timedRefresh() {
         setTimeout('location.reload()', 5000);
-    }
+        }
     </script>
 
     <style>
@@ -41,7 +41,7 @@
             class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active" style="padding-left: 20px"><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item" style="padding-left: 20px"><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></li>
             {% if user.is_anonymous %}
 
                 <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
@@ -70,16 +70,15 @@
     </ul>
   {% endif %}
 {% endwith %}
-</body>
-    <!-- Dynamic content -->
-    <section class="content" style="padding-left: 150px; padding-bottom: 40px">
-        <header>
-            {% block header %}{% endblock %}
-        </header>
+<!-- Dynamic content -->
+<section class="content" style="padding-left: 150px; padding-bottom: 40px">
+    <header>
+        {% block header %}{% endblock %}
+    </header>
         {% block content %}{% endblock %}
-    </section>
-    <footer style="padding-top: 20px; background-color: #353b44; border-top: 6px solid #224a61;">
-        <h2 style="padding-bottom: 15px; text-align: center; font-size: 18px; color: white"> © LTC Web Design 2019 </h2>
-    </footer>
+</section>
+<footer style="padding-top: 20px; background-color: #353b44; border-top: 6px solid #224a61;">
+    <h2 style="padding-bottom: 15px; text-align: center; font-size: 18px; color: white"> © LTC Web Design 2019 </h2>
+</footer>
 </body>
 </html>
