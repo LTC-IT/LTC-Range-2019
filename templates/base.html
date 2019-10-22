@@ -23,7 +23,7 @@
     <script>
         function timedRefresh() {
         setTimeout('location.reload()', 5000);
-    }
+        }
     </script>
 
     <style>
@@ -70,16 +70,15 @@
     </ul>
   {% endif %}
 {% endwith %}
-</body>
-    <!-- Dynamic content -->
-    <section class="content" style="padding-left: 150px; padding-bottom: 40px">
-        <header>
-            {% block header %}{% endblock %}
-        </header>
+<!-- Dynamic content -->
+<section class="content" style="padding-left: 150px; padding-bottom: 40px">
+    <header>
+        {% block header %}{% endblock %}
+    </header>
         {% block content %}{% endblock %}
-    </section>
-    <footer style="padding-top: 20px; background-color: #353b44; border-top: 6px solid #224a61;">
-        <h2 style="padding-bottom: 15px; text-align: center; font-size: 18px; color: white"> © LTC Web Design 2019 </h2>
-    </footer>
+</section>
+<footer style="padding-top: 20px; background-color: #353b44; border-top: 6px solid #224a61;">
+    <h2 style="padding-bottom: 15px; text-align: center; font-size: 18px; color: white"> © LTC Web Design 2019 </h2>
+</footer>
 </body>
 </html>
