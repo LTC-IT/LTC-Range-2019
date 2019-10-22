@@ -169,9 +169,9 @@ def display_users():
 
     return render_template('list-users.html', Title='List of Users', data=html_output, user=current_user)
 
-
 if __name__ == '__main__':
     app.run()
+
 
 @app.route('/report/stocklevels')
 def all_user_details():
@@ -205,9 +205,9 @@ def all_user_details():
 
     return render_template('user-details.html', Title='Users Details', data=html_output, user=current_user)
 
-
 if __name__ == '__main__':
     app.run()
+
 
 @app.route('/report/u_ranked')
 @login_required
@@ -234,9 +234,9 @@ def ranked_users():
                                  "<div class=\"col-sm-3\"></div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\"></div>"
                                  "</div>".format(html_output, user[0], user[1]))
         else:
-            html_output = Markup(
-                "{}<div class = \"row cell2 user-size\"> <div class=\"col-sm-3\">"
-                "</div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\">{}</div></div><div class=\"col-sm-3\"></div>".format(html_output, user[0], user[1]))
+            html_output = Markup("{}<div class = \"row cell2 user-size\"> "
+                                 "<div class=\"col-sm-3\"></div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\">{}</div></div><div class=\"col-sm-3\">"
+                                 "</div>".format(html_output, user[0], user[1]))
         # user_counter = user_counter + 1
 
     html_output = Markup("{}</div></section></tbody><table>".format(html_output))
@@ -268,8 +268,6 @@ def claim():
     if form.validate_on_submit():
         code = form.passcode.data
 
-
-
         sql = text('select * from ctf_sub_systems')
         result = db.engine.execute(sql)
 
@@ -279,7 +277,7 @@ def claim():
             print(check_password_hash(system.Code, code))
             if check_password_hash(system.Code, code):
                 # update status to true
-                #result = db.engine.execute(text('Update ctf_sub_systems SET Status = TRUE WHERE subsystemid=:subid'), subid=index)
+                # result = db.engine.execute(text('Update ctf_sub_systems SET Status = TRUE WHERE subsystemid=:subid'), subid=index)
                 print(system.title)
                 update_system = CTFSubSystems.query.filter_by(title=system.title).first()
                 print(update_system.title)
@@ -287,7 +285,5 @@ def claim():
                 update_system.Owner = current_user.username
 
         db.session.commit()
-
-
 
     return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
