@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+<body onload="timedRefresh()">
 {% block title %}{{ Title }}{% endblock %}
 
 {% block header %}
@@ -12,3 +13,4 @@
   {{ data }}
 
 {% endblock %}
+</body>
