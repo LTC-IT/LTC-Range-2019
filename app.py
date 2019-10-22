@@ -7,6 +7,7 @@ from flask_login import LoginManager
 from flask_login import logout_user
 from flask_login import login_required
 from sqlalchemy import text
+from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -265,6 +266,22 @@ def reset_user_password(userid):
 def claim():
     form = ClaimForm()
     if form.validate_on_submit():
-        user.update_details()
-        db.session.commit()
+        code = form.passcode.data
+        sql = text('select * from ctf_sub_systems')
+        result = db.engine.execute(sql)
+
+        systems = []
+
+        for index, system in enumerate(result):
+            print(check_password_hash(system.Code, code))
+            if check_password_hash(system.Code, code):
+                # update status to true
+                result = db.engine.execute(text('Update ctf_sub_systems SET Status = TRUE WHERE subsystemid=:subid'), subid=index)
+
+
+
+
+
+
+
     return render_template('claimtest.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
