@@ -267,6 +267,9 @@ def claim():
     form = ClaimForm()
     if form.validate_on_submit():
         code = form.passcode.data
+
+
+
         sql = text('select * from ctf_sub_systems')
         result = db.engine.execute(sql)
 
@@ -276,11 +279,13 @@ def claim():
             print(check_password_hash(system.Code, code))
             if check_password_hash(system.Code, code):
                 # update status to true
-                result = db.engine.execute(text('Update ctf_sub_systems SET Status = TRUE WHERE subsystemid=:subid'), subid=index)
+                #result = db.engine.execute(text('Update ctf_sub_systems SET Status = TRUE WHERE subsystemid=:subid'), subid=index)
+                print(system.title)
+                update_system = CTFSubSystems.query.filter_by(title=system.title).first()
+                print(update_system.title)
+                update_system.claim()
 
-
-
-
+        db.session.commit()
 
 
 

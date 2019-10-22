@@ -49,6 +49,7 @@ class CTFSubSystems(db.Model):
     description = db.Column(db.String(256), index=True, unique=True)
     Owner = db.Column(db.String(64), index=True, unique=False)
     score = db.Column(db.Integer, index=True, unique=False)
+    status = db.Column(db.Boolean, index=True, unique=False)
     Code = db.Column(db.String(11), index=True, unique=True)
 
     def set_passcode(self, code):
@@ -56,6 +57,10 @@ class CTFSubSystems(db.Model):
 
     def check_passcode(self, code):
         return check_password_hash(self.Code, code)
+
+    def claim(self):
+        self.status = True
+        print("claimed")
 
 
 
