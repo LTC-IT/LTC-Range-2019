@@ -231,11 +231,13 @@ def ranked_users():
 
         if index % 2 == 0:
             html_output = Markup("{}<div class = \"row cell1 user-size\"> "
-                                 "<div class=\"col-sm-3\"></div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\"></div>"
+                                 "<div class=\"col-sm-3\"></div><div class=\"col-sm-3\">{}</div><div "
+                                 "class=\"col-sm-3\">{}</div><div class=\"col-sm-3\"></div> "
                                  "</div>".format(html_output, user[0], user[1]))
         else:
             html_output = Markup("{}<div class = \"row cell2 user-size\"> "
-                                 "<div class=\"col-sm-3\"></div><div class=\"col-sm-3\">{}</div><div class=\"col-sm-3\">{}</div></div><div class=\"col-sm-3\">"
+                                 "<div class=\"col-sm-3\"></div><div class=\"col-sm-3\">{}</div><div "
+                                 "class=\"col-sm-3\">{}</div></div><div class=\"col-sm-3\"> "
                                  "</div>".format(html_output, user[0], user[1]))
         # user_counter = user_counter + 1
 
