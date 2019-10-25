@@ -1,10 +1,10 @@
-
 {% extends 'base.html' %}
 
 
 <!-- This creates the heading of the page and makes it the same as the title -->
 {% block header %}
-    <h2 style="text-align: left; padding-left: 280px; padding-bottom: 90px;"><img src="../static/blackout-banner.jpg" height="250" width="1050"/></h2>
+    <h2 style="text-align: left; padding-left: 280px; padding-bottom: 90px;"><img src="../static/blackout-banner.jpg"
+                                                                                  height="250" width="1050"/></h2>
 {% endblock %}
 
 
@@ -19,13 +19,15 @@
             {% endif %}
             <p>Welcome to Operation Blackout's subsystem claiming website.</p>
             {% if current_user.is_anonymous %}
-                <p>Please <a href="/register">register</a> or <a href="/login">login</a> to view the rest of the website.</p>
+                <p>Please <a href="/register">register</a> or <a href="/login">login</a> to view the rest of the
+                    website.</p>
             {% else %}
-                <p>If you have a passcode to claim a subsystem, go to the <a href="/claimsubsystem">claim a subsystem</a> page.</p>
-            </div>
-        <div class="col-sm-6">
-            <img src="../static/lego_city.jpg" width="496.9" height="320">
-        </div>
-    </div>
-    {% endif %}
+                <p>If you have a passcode to claim a subsystem, go to the <a href="/claimsubsystem">claim a
+                    subsystem</a> page.</p>
+                </div>
+                <div class="col-sm-6">
+                    <img src="../static/lego_city.jpg" width="496.9" height="320">
+                </div>
+                </div>
+            {% endif %}
 {% endblock %}

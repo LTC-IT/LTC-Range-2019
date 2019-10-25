@@ -85,7 +85,7 @@ def registerCTFSubsystem():
         db.session.commit()
         flash('Congratulations, you have registered a new CTF Subsystem!')
         return redirect(url_for('login'))
-    return render_template('registersubsystem.html', title='Register Sub System', form=form, user=current_user)
+    return render_template('registersubsystem.html', title='Register Subsystem', form=form, user=current_user)
 
 
 @app.route('/secret', methods=['GET', 'POST'])
