@@ -297,3 +297,8 @@ def claim():
         db.session.commit()
 
     return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
+
+
+@app.route('/humans.txt')
+def humans():
+    return render_template("humans.txt", title="Humans")
