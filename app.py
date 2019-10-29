@@ -284,7 +284,13 @@ def claim():
                 update_system = CTFSubSystems.query.filter_by(title=system.title).first()
                 print(update_system.title)
                 update_system.claim()
+                flash("System claimed")
+                user = User.query.filter_by(username=current_user.username).first()
+                score = user.current_score + update_system.score
+                print("score is: {}".format(score))
                 update_system.Owner = current_user.username
+                user.current_score = score
+                #db.session.commit()
 
         db.session.commit()
 
