@@ -1,9 +1,9 @@
-credits for the students who worked on this website:
+TEAM
 
 Dylan Bock - base website & programmer
 
-Omar Kennedy - programmer
+Omar Kennedy - task organiser & idea guy
 
-Ryan Nguyen - nerd
+Ryan Nguyen - undisputed grandmaster of programming
 
-Samuel - website tester
+Samuel Sheridan - bug squasher & beta tester
