@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     is_administrator = db.Column(db.Boolean)
     current_score = db.Column(db.Integer)
+    active_player = db.Column(db.Boolean)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

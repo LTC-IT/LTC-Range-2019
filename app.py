@@ -212,7 +212,7 @@ if __name__ == '__main__':
 @app.route('/report/u_ranked')
 @login_required
 def ranked_users():
-    ranked = text('select username, current_score from user')
+    ranked = text('select username, current_score from user where active_player')
     result = db.engine.execute(ranked)
     users = []
     html_output = Markup(
