@@ -1,9 +1,9 @@
-TEAM
+/*TEAM*/
 
-Dylan Bock - base website & programmer
+Dylan Bock - base website & programmer;
 
-Omar Kennedy - task organiser & idea guy
+Omar Kennedy - task organiser & idea guy;
 
-Ryan Nguyen - undisputed grandmaster of programming
+Ryan Nguyen - undisputed grandmaster of programming;
 
-Samuel Sheridan - bug squasher & beta tester
+Samuel Sheridan - bug squasher & beta tester;
