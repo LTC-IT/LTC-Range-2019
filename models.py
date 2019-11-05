@@ -63,6 +63,9 @@ class CTFSubSystems(db.Model):
         self.status = True
         print("claimed")
 
+    def reset(self):
+        self.status = True
+        print("reset")
 
 
 class Order(db.Model):

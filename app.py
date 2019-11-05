@@ -19,7 +19,7 @@ login.login_view = 'login'
 from flask_login import current_user, login_user
 from models import User, CTFSubSystems
 from forms import LoginForm, RegistrationForm, CTFSubsystemForm, ClaimSubsystemForm, EditUserForm, ResetPasswordForm, \
-    ClaimForm
+    ClaimForm, ResetSubsystemsForm
 
 
 @app.route('/')
@@ -297,6 +297,28 @@ def claim():
         db.session.commit()
 
     return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
+
+
+@app.route('/reset', methods=['GET', 'POST'])
+def reset_subsystems():
+    form = ResetSubsystemsForm()
+    if form.validate_on_submit():
+        sql = text('select * from ctf_sub_systems')
+        result = db.engine.execute(sql)
+
+        for index, system in enumerate(result):
+                reset_subsystem = CTFSubSystems.query.filter_by(title=system.title).first()
+                print(reset_subsystem.title)
+                if reset_subsystem.status:
+                    reset_subsystem.reset()
+                    reset_subsystem.Owner = 'None'
+                    reset_subsystem.status = False
+                else:
+                    flash("You have reset - {}".format(reset_subsystem.title))
+
+        db.session.commit()
+
+    return render_template('reset.html', pagetitle='Reset Subsystems', form=form, user=current_user)
 
 
 @app.route('/humans.txt')

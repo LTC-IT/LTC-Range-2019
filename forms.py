@@ -59,3 +59,6 @@ class ResetPasswordForm(FlaskForm):
 class ClaimForm(FlaskForm):
     passcode = StringField('Passcode', validators=[DataRequired()])
     submit = SubmitField('Claim')
+
+class ResetSubsystemsForm(FlaskForm):
+    submit = SubmitField('Reset')
