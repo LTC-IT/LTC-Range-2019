@@ -1,9 +1,19 @@
 /*TEAM*/
 
-Dylan Bock - base website & programmer;
+    Dylan Brock Lesnar- base website & programmer;
 
-Omar Kennedy - task organiser & idea guy;
+    Omar F Kennedy - task organiser & idea guy;
 
-Ryan Nguyen - undisputed grandmaster of programming;
+    Ryan Nigerian Nguyen - undisputed grandmaster of programming;
 
-Samuel Sheridan - website tester;
+    Samuel Sheriff Sheridan - website tester;
+
+    Ryan Cowgirl Cather - star trek die hard fan;
+
+
+/*SITE*/
+
+    Last update: 2019/11/22;
+    DOCTYPE: HTML5;
+    IDE: Pycharm;
+    Software: Python 3.7;
