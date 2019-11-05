@@ -313,7 +313,6 @@ def reset_subsystems():
                     reset_subsystem.reset()
                     reset_subsystem.Owner = 'None'
                     reset_subsystem.status = False
-                else:
                     flash("You have reset - {}".format(reset_subsystem.title))
 
         db.session.commit()
