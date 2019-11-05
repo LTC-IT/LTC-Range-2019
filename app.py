@@ -320,6 +320,113 @@ def reset_subsystems():
     return render_template('reset.html', pagetitle='Reset Subsystems', form=form, user=current_user)
 
 
+@app.route('/report/dashboard')
+def dashboard():
+    subsystems = text('select * from ctf_sub_systems')
+    result = db.engine.execute(subsystems)
+    users = []
+    html_output = Markup(
+        "<div class=\"container-fluid table table-hover text-centered font-color\"><div class = \"row\"><div class=\"col-sm-3 "
+        "font-weight-bold\">ID</div><div class=\"col-sm-3 font-weight-bold\">Name</div><div class=\"col-sm-3 "
+        "font-weight-bold\">Username</div><div class=\"col-sm-3 font-weight-bold\">Email</div></div>")
+    for row in result:
+        users.append(row)
+    subsystem_counter = 1
+    for index, user in enumerate(users):
+
+        if index % 2 == 0:
+            html_output = Markup(
+                "{}<div class = \"row cell1 font-color\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
+                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div></div>".format(
+                    html_output, subsystem_counter, subsystems[0], subsystems[1], subsystems[2]))
+        else:
+            html_output = Markup(
+                "{}<div class = \"row cell2 font-color\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
+                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div></div>".format(
+                    html_output, subsystem_counter, subsystems[0], subsystems[1], subsystems[2]))
+        subsystem_counter = subsystem_counter + 1
+
+        {% if subsystems[0].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[1].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[2].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[3].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[4].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[5].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[6].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[7].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[8].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[9].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[10].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+        {% if subsystems[11].claim == True %}
+            <p>G Train</p>
+        {% else %}
+            <p>R Train</p>
+        {% endif %}
+
+    html_output = Markup("{}</tbody></table>".format(html_output))
+    print(html_output)
+
+    return render_template('dashboard.html', Title='Subsystem Dashboard', data=html_output, user=current_user)
+
+if __name__ == '__main__':
+    app.run()
+
+
 @app.route('/humans.txt')
 def humans():
     return render_template("humans.txt", title="Humans")
