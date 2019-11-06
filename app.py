@@ -346,77 +346,77 @@ def dashboard():
                     html_output, subsystem_counter, subsystems[0], subsystems[1], subsystems[2]))
         subsystem_counter = subsystem_counter + 1
 
-        {% if subsystems[0].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[1].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[2].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[3].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[4].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[5].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[6].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[7].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[8].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[9].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[10].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
-
-        {% if subsystems[11].claim == True %}
-            <p>G Train</p>
-        {% else %}
-            <p>R Train</p>
-        {% endif %}
+        # {% if subsystems[0].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[1].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[2].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[3].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[4].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[5].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[6].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[7].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[8].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[9].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[10].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
+        #
+        # {% if subsystems[11].claim == True %}
+        #     <p>G Train</p>
+        # {% else %}
+        #     <p>R Train</p>
+        # {% endif %}
 
     html_output = Markup("{}</tbody></table>".format(html_output))
     print(html_output)
