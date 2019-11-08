@@ -169,6 +169,7 @@ def display_users():
 
     return render_template('list-users.html', Title='List of Users', data=html_output, user=current_user)
 
+
 if __name__ == '__main__':
     app.run()
 
@@ -204,6 +205,7 @@ def all_user_details():
     print(html_output)
 
     return render_template('user-details.html', Title='Users Details', data=html_output, user=current_user)
+
 
 if __name__ == '__main__':
     app.run()
@@ -307,13 +309,13 @@ def reset_subsystems():
         result = db.engine.execute(sql)
 
         for index, system in enumerate(result):
-                reset_subsystem = CTFSubSystems.query.filter_by(title=system.title).first()
-                print(reset_subsystem.title)
-                if reset_subsystem.status:
-                    reset_subsystem.reset()
-                    reset_subsystem.Owner = 'None'
-                    reset_subsystem.status = False
-                    flash("You have reset - {}".format(reset_subsystem.title))
+            reset_subsystem = CTFSubSystems.query.filter_by(title=system.title).first()
+            print(reset_subsystem.title)
+            if reset_subsystem.status:
+                reset_subsystem.reset()
+                reset_subsystem.Owner = 'None'
+                reset_subsystem.status = False
+                flash("You have reset - {}".format(reset_subsystem.title))
 
         db.session.commit()
 
@@ -322,17 +324,24 @@ def reset_subsystems():
 
 @app.route('/report/dashboard')
 def dashboard():
-    subsystems = text('select * from ctf_sub_systems')
+    subsystems = text('select title, Owner, Status from ctf_sub_systems')
     result = db.engine.execute(subsystems)
-    users = []
-    html_output = Markup(
-        "<div class=\"container-fluid table table-hover text-centered font-color\"><div class = \"row\"><div class=\"col-sm-3 "
-        "font-weight-bold\">ID</div><div class=\"col-sm-3 font-weight-bold\">Name</div><div class=\"col-sm-3 "
-        "font-weight-bold\">Username</div><div class=\"col-sm-3 font-weight-bold\">Email</div></div>")
+    subsystem_list = []
     for row in result:
-        users.append(row)
+        subsystem_list.append(row)
+    html_output = Markup(
+        "<div class=\"container-fluid table table-hover text-centered font-color\"><div class = \"row\>")
+
+    for systems in subsystem_list:
+        html_output = Markup("{}<div class=\"col-sm-1\">{}</div>".format(html_output, systems.title))
+    html_output = Markup(
+        "{}</div>".format(html_output))
+
+    '''
+    
+   
     subsystem_counter = 1
-    for index, user in enumerate(users):
+    for index, user in enumerate(subsystem_list):
 
         if index % 2 == 0:
             html_output = Markup(
@@ -347,9 +356,13 @@ def dashboard():
         subsystem_counter = subsystem_counter + 1
 
     html_output = Markup("{}</tbody></table>".format(html_output))
-    print(html_output)
+    '''
 
-    return render_template('dashboard.html', Title='Subsystem Dashboard', data=html_output, user=current_user)
+    print(html_output)
+    print(subsystem_list)
+
+    return render_template('dashboard.html', Title='Subsystem Dashboard', data=html_output, user=current_user, subsystems=subsystem_list)
+
 
 if __name__ == '__main__':
     app.run()
