@@ -327,6 +327,7 @@ def dashboard():
     subsystems = text('select title, Owner, Status from ctf_sub_systems')
     result = db.engine.execute(subsystems)
     subsystem_list = []
+
     for row in result:
         subsystem_list.append(row)
     html_output = Markup(
@@ -336,27 +337,6 @@ def dashboard():
         html_output = Markup("{}<div class=\"col-sm-1\">{}</div>".format(html_output, systems.title))
     html_output = Markup(
         "{}</div>".format(html_output))
-
-    '''
-    
-   
-    subsystem_counter = 1
-    for index, user in enumerate(subsystem_list):
-
-        if index % 2 == 0:
-            html_output = Markup(
-                "{}<div class = \"row cell1 font-color\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
-                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div></div>".format(
-                    html_output, subsystem_counter, subsystems[0], subsystems[1], subsystems[2]))
-        else:
-            html_output = Markup(
-                "{}<div class = \"row cell2 font-color\"><div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div>"
-                "<div class=\"col-sm-3\">{}</div> <div class=\"col-sm-3\">{}</div></div>".format(
-                    html_output, subsystem_counter, subsystems[0], subsystems[1], subsystems[2]))
-        subsystem_counter = subsystem_counter + 1
-
-    html_output = Markup("{}</tbody></table>".format(html_output))
-    '''
 
     print(html_output)
     print(subsystem_list)
