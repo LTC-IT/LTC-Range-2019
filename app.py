@@ -207,10 +207,6 @@ def all_user_details():
     return render_template('user-details.html', Title='Users Details', data=html_output, user=current_user)
 
 
-if __name__ == '__main__':
-    app.run()
-
-
 @app.route('/report/u_ranked')
 @login_required
 def ranked_users():
@@ -344,8 +340,6 @@ def dashboard():
     return render_template('dashboard.html', Title='Subsystem Dashboard', data=html_output, user=current_user, subsystems=subsystem_list)
 
 
-if __name__ == '__main__':
-    app.run()
 
 
 @app.route('/humans.txt')
