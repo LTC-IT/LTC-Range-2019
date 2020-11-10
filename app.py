@@ -17,7 +17,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 from flask_login import current_user, login_user
-from models import User, CTFSubSystems
+from models import User, CTFSubSystems, Order
 from forms import LoginForm, RegistrationForm, CTFSubsystemForm, ClaimSubsystemForm, EditUserForm, ResetPasswordForm, \
     ClaimForm, ResetSubsystemsForm
 
