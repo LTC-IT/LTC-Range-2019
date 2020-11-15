@@ -282,7 +282,7 @@ def claim():
                 update_system = CTFSubSystems.query.filter_by(title=system.title).first()
                 print(update_system.title)
                 if update_system.status:
-                    flash("You have already claimed this subsystem")
+                    flash("You have already claimed this character")
                 else:
                     update_system.claim()
                     flash("{} - System claimed".format(update_system.title))
@@ -294,7 +294,7 @@ def claim():
 
         db.session.commit()
 
-    return render_template('claimsubsystem.html', pagetitle='Claim a Subsystem', form=form, user=current_user)
+    return render_template('claimsubsystem.html', pagetitle='Claim a Character', form=form, user=current_user)
 
 
 @app.route('/reset', methods=['GET', 'POST'])
