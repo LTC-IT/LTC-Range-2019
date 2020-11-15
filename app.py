@@ -285,7 +285,7 @@ def claim():
                     flash("You have already claimed this character")
                 else:
                     update_system.claim()
-                    flash("{} - System claimed".format(update_system.title))
+                    flash("{} - Character claimed".format(update_system.title))
                     user = User.query.filter_by(username=current_user.username).first()
                     score = user.current_score + update_system.score
                     print("score is: {}".format(score))
