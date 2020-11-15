@@ -73,7 +73,7 @@ def register():
     return render_template('register.html', title='Register', form=form, user=current_user)
 
 
-@app.route('/registersubsystem', methods=['GET', 'POST'])
+@app.route('/registercharacter', methods=['GET', 'POST'])
 @login_required
 def registerCTFSubsystem():
     form = CTFSubsystemForm()
@@ -83,9 +83,9 @@ def registerCTFSubsystem():
         newSubSystem.set_passcode(form.code.data)
         db.session.add(newSubSystem)
         db.session.commit()
-        flash('Congratulations, you have registered a new CTF Subsystem!')
+        flash('Congratulations, you have registered a new character!')
         return redirect(url_for('login'))
-    return render_template('registersubsystem.html', title='Register Subsystem', form=form, user=current_user)
+    return render_template('registersubsystem.html', title='Register Character', form=form, user=current_user)
 
 
 @app.route('/secret', methods=['GET', 'POST'])
@@ -113,7 +113,7 @@ def claimsubsystem():
     subsystems = text('select * from ctf_sub_systems')
     result = db.engine.execute(subsystems)
 
-    return render_template('secret.html', pagetitle='Claim a Subsystem', products=result, user=current_user, form=form)
+    return render_template('secret.html', pagetitle='Claim a Character', products=result, user=current_user, form=form)
 
 
 @app.route('/edit_user/<userid>', methods=['GET', 'POST'])
@@ -262,7 +262,7 @@ def reset_user_password(userid):
     return render_template('reset-password.html', title='Reset Password', form=form, user=user)
 
 
-@app.route('/claimsubsystem', methods=['GET', 'POST'])
+@app.route('/claimcharacter', methods=['GET', 'POST'])
 def claim():
     form = ClaimForm()
     if form.validate_on_submit():
@@ -315,7 +315,7 @@ def reset_subsystems():
 
         db.session.commit()
 
-    return render_template('reset.html', pagetitle='Reset Subsystems', form=form, user=current_user)
+    return render_template('reset.html', pagetitle='Reset Characters', form=form, user=current_user)
 
 
 @app.route('/report/dashboard')
